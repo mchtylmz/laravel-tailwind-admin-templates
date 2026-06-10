@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs><filter id="s" x="-5%" y="-5%" width="110%" height="110%"><feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.06"/></filter></defs>
+  <rect width="800" height="450" fill="#f8fafc"/>
+  <rect x="200" y="20" width="580" height="410" rx="8" fill="#fff" filter="url(#s)"/>
+  <rect x="200" y="20" width="580" height="48" rx="8" fill="#f8fafc"/>
+  <rect x="200" y="60" width="580" height="8" fill="#f8fafc"/>
+  <text x="220" y="52" font-family="system-ui" font-size="14" font-weight="700" fill="#0f172a">Dashboard — Ecommerce</text>
+  <rect x="220" y="82" width="130" height="72" rx="6" fill="#f0fdf4" stroke="#bbf7d0"/>
+  <text x="234" y="104" font-family="system-ui" font-size="10" fill="#166534">Sales</text>
+  <text x="234" y="136" font-family="system-ui" font-size="22" font-weight="700" fill="#15803d">$24,780</text>
+  <rect x="364" y="82" width="130" height="72" rx="6" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="378" y="104" font-family="system-ui" font-size="10" fill="#1e40af">Orders</text>
+  <text x="378" y="136" font-family="system-ui" font-size="22" font-weight="700" fill="#2563eb">342</text>
+  <rect x="508" y="82" width="130" height="72" rx="6" fill="#fff7ed" stroke="#fed7aa"/>
+  <text x="522" y="104" font-family="system-ui" font-size="10" fill="#c2410c">Conversion</text>
+  <text x="522" y="136" font-family="system-ui" font-size="22" font-weight="700" fill="#ea580c">3.42%</text>
+  <rect x="652" y="82" width="110" height="72" rx="6" fill="#ecfeff" stroke="#a5f3fc"/>
+  <text x="666" y="104" font-family="system-ui" font-size="10" fill="#0891b2">Avg Order</text>
+  <text x="666" y="136" font-family="system-ui" font-size="22" font-weight="700" fill="#0891b2">$72.45</text>
+  <rect x="220" y="170" width="370" height="100" rx="8" fill="#fff" stroke="#e2e8f0"/>
+  <text x="238" y="196" font-family="system-ui" font-size="13" font-weight="600" fill="#0f172a">Recent Orders</text>
+  <text x="238" y="226" font-family="system-ui" font-size="10" fill="#64748b">Wireless Headphones — $129.99</text>
+  <text x="238" y="246" font-family="system-ui" font-size="10" fill="#64748b">Smart Watch — $249.99</text>
+  <text x="238" y="266" font-family="system-ui" font-size="10" fill="#64748b">Laptop Stand — $79.99</text>
+  <rect x="606" y="170" width="156" height="100" rx="8" fill="#fff" stroke="#e2e8f0"/>
+  <text x="622" y="196" font-family="system-ui" font-size="13" font-weight="600" fill="#0f172a">Top Products</text>
+  <text x="622" y="224" font-family="system-ui" font-size="10" fill="#64748b">Headphones — $12,450</text>
+  <text x="622" y="244" font-family="system-ui" font-size="10" fill="#64748b">Smart Watch — $8,920</text>
+  <text x="622" y="264" font-family="system-ui" font-size="10" fill="#64748b">Laptop Stand — $6,340</text>
+  <text x="400" y="435" text-anchor="middle" font-family="system-ui" font-size="11" fill="#cbd5e1">Ecommerce Dashboard</text>
+</svg>

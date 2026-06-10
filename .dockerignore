@@ -1,0 +1,9 @@
+node_modules/
+vendor/
+.env
+.git
+.gitignore
+.DS_Store
+docker-compose.yml
+storage/
+bootstrap/cache/
