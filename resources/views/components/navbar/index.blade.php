@@ -3,16 +3,10 @@
         <x-heroicon-o-bars-3 class="w-5 h-5" />
     </button>
     <div class="flex-1">
-        <div class="relative max-w-md">
-            <x-heroicon-o-magnifying-glass class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-            <input type="text" placeholder="Search..." class="w-full pl-10 pr-4 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500">
-        </div>
+        <x-search />
     </div>
     <div class="flex items-center gap-2">
-        <button class="relative p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
-            <x-heroicon-o-bell class="w-5 h-5" />
-            <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-red-500"></span>
-        </button>
+        <x-notification />
         <button @click="$store.darkMode.toggle()" class="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
             <x-heroicon-o-moon x-show="!$store.darkMode.dark" class="w-5 h-5" />
             <x-heroicon-o-sun x-show="$store.darkMode.dark" class="w-5 h-5" />
