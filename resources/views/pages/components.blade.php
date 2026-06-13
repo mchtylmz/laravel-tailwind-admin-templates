@@ -295,6 +295,50 @@
             </x-card>
 
             <x-card>
+                <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Color Picker</h2></x-slot:header>
+                <div class="flex flex-wrap gap-4">
+                    <x-color-picker />
+                    <x-color-picker value="#10b981" />
+                    <x-color-picker value="#f59e0b" />
+                </div>
+                <p class="text-xs text-gray-500 mt-2">Alpine-based color picker with presets and native input.</p>
+            </x-card>
+
+            <x-card>
+                <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Tree Select</h2></x-slot:header>
+                @php
+                    $treeItems = [
+                        ['label' => 'Electronics', 'value' => 'electronics', 'children' => [
+                            ['label' => 'Computers', 'value' => 'computers', 'children' => [
+                                ['label' => 'Laptops', 'value' => 'laptops'],
+                                ['label' => 'Desktops', 'value' => 'desktops'],
+                                ['label' => 'Tablets', 'value' => 'tablets'],
+                            ]],
+                            ['label' => 'Phones', 'value' => 'phones', 'children' => [
+                                ['label' => 'Smartphones', 'value' => 'smartphones'],
+                                ['label' => 'Accessories', 'value' => 'phone-accessories'],
+                            ]],
+                        ]],
+                        ['label' => 'Clothing', 'value' => 'clothing', 'children' => [
+                            ['label' => 'Men', 'value' => 'men'],
+                            ['label' => 'Women', 'value' => 'women'],
+                            ['label' => 'Kids', 'value' => 'kids'],
+                        ]],
+                        ['label' => 'Books', 'value' => 'books'],
+                        ['label' => 'Home & Garden', 'value' => 'home-garden'],
+                    ];
+                @endphp
+                <x-treeselect :items="$treeItems" placeholder="Select categories..." />
+                <p class="text-xs text-gray-500 mt-2">Multi-level tree select with nested categories.</p>
+            </x-card>
+
+            <x-card>
+                <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Rich Text Editor</h2></x-slot:header>
+                <x-editor placeholder="Start writing..." />
+                <p class="text-xs text-gray-500 mt-2">Lightweight contenteditable-based editor with formatting toolbar.</p>
+            </x-card>
+
+            <x-card>
                 <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Command Palette</h2></x-slot:header>
                 <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">Press <kbd class="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-700 text-xs font-medium">⌘K</kbd> or <kbd class="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-700 text-xs font-medium">Ctrl+K</kbd> to open the command palette.</p>
                 <x-button size="sm" @click="window.dispatchEvent(new CustomEvent('toggle-cmd-k'))">Open Command Palette</x-button>

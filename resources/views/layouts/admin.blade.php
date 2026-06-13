@@ -80,6 +80,58 @@
             value: val, max, interactive,
             set(v) { if (this.interactive) this.value = v }
         }))
+        Alpine.data('editor', ({ value = '', placeholder = 'Write something...' } = {}) => ({
+            value, placeholder, bold: false, italic: false, underline: false,
+            init() {
+                const el = this.$refs.editor
+                if (!el.innerHTML) el.innerHTML = ''
+                el.addEventListener('keydown', e => {
+                    if (e.key === 'Tab') { e.preventDefault(); document.execCommand('insertHTML', false, '&nbsp;&nbsp;&nbsp;&nbsp;') }
+                })
+            },
+            exec(cmd, val = null) {
+                document.execCommand(cmd, false, val)
+                this.update()
+                this.$refs.editor.focus()
+            },
+            update() {
+                this.value = this.$refs.editor.innerHTML
+                this.bold = document.queryCommandState('bold')
+                this.italic = document.queryCommandState('italic')
+                this.underline = document.queryCommandState('underline')
+            }
+        }))
+        Alpine.data('colorpicker', ({ value = '#6366f1' } = {}) => ({
+            open: false, value,
+            presets: ['#ef4444','#f97316','#f59e0b','#22c55e','#10b981','#06b6d4','#3b82f6','#6366f1','#8b5cf6','#ec4899','#f43f5e','#64748b','#1e293b','#ffffff','#000000','#78716c'],
+            select(v) { this.value = v; this.open = false },
+            validate() { if (/^#[0-9a-fA-F]{6}$/.test(this.value)) { this.open = false } },
+            clear() { this.value = '#6366f1' },
+            close() { this.open = false }
+        }))
+        Alpine.data('treeselect', ({ items = [] } = {}) => ({
+            open: false, selected: [],
+            get flatItems() {
+                const flatten = (arr, depth = 0) => {
+                    let r = []
+                    arr.forEach(item => {
+                        r.push({ ...item, depth, open: item.open ?? false })
+                        if (item.children && item.open) r.push(...flatten(item.children, depth + 1))
+                    })
+                    return r
+                }
+                return flatten(items)
+            },
+            isSelected(v) { return this.selected.some(s => s.value === v) },
+            toggle(item) {
+                if (item.children) { item.open = !item.open; return }
+                const idx = this.selected.findIndex(s => s.value === item.value)
+                if (idx > -1) this.selected.splice(idx, 1)
+                else this.selected.push({ value: item.value, label: item.label })
+            },
+            remove(v) { this.selected = this.selected.filter(s => s.value !== v) },
+            close() { this.open = false }
+        }))
         Alpine.data('commandPalette', () => ({
             open: false, query: '', activeIndex: 0, results: [],
             pages: [
