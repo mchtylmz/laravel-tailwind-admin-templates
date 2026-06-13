@@ -139,6 +139,75 @@
         </x-card>
     </div>
 
+    <div class="space-y-6">
+        <x-card>
+            <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Form Inputs</h2></x-slot:header>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <div>
+                        <x-label>Text Input</x-label>
+                        <x-input name="text" placeholder="Enter text..." />
+                    </div>
+                    <div>
+                        <x-label>Password</x-label>
+                        <x-input type="password" name="password" placeholder="Enter password..." />
+                    </div>
+                    <div>
+                        <x-label>Email</x-label>
+                        <x-input type="email" name="email" placeholder="email@example.com" />
+                    </div>
+                    <div>
+                        <x-label>Number</x-label>
+                        <x-input type="number" name="number" placeholder="0" />
+                    </div>
+                    <div>
+                        <x-label>Select</x-label>
+                        <x-select name="select">
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                        </x-select>
+                    </div>
+                    <div>
+                        <x-label>Textarea</x-label>
+                        <x-textarea name="textarea" rows="3" placeholder="Write something..." />
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <x-label>Checkboxes</x-label>
+                        <div class="space-y-2 mt-1">
+                            <x-checkbox name="check1" label="Option A" />
+                            <x-checkbox name="check2" label="Option B" />
+                            <x-checkbox name="check3" label="Option C (disabled)" disabled />
+                        </div>
+                    </div>
+                    <div>
+                        <x-label>Radio Buttons</x-label>
+                        <div class="space-y-2 mt-1">
+                            <x-radio name="radio" value="1" label="Choice 1" />
+                            <x-radio name="radio" value="2" label="Choice 2" />
+                            <x-radio name="radio" value="3" label="Choice 3 (disabled)" disabled />
+                        </div>
+                    </div>
+                    <div>
+                        <x-label>File Upload</x-label>
+                        <x-file-upload name="file" help="PNG, JPG up to 2MB" />
+                    </div>
+                    <div>
+                        <x-label>With Error</x-label>
+                        <x-input name="error" placeholder="This has an error..." />
+                        <x-form-error>This field is required.</x-form-error>
+                    </div>
+                    <div>
+                        <x-label>Disabled</x-label>
+                        <x-input name="disabled" value="Cannot edit" disabled />
+                    </div>
+                </div>
+            </div>
+        </x-card>
+    </div>
+
     <div x-data="{ modalOpen: false, modalSize: 'md', modalTitle: 'Modal' }"
          @open-modal.window="modalSize = $event.detail.size; modalTitle = $event.detail.title || 'Modal ' + $event.detail.size.toUpperCase(); modalOpen = true"
          @keydown.window.escape="modalOpen = false">
