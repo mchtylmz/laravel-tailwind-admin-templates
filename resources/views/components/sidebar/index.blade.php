@@ -1,12 +1,10 @@
-<aside class="fixed inset-y-0 left-0 z-30 flex flex-col bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 transition-all duration-300"
-       x-bind:class="$store.sidebar.collapsed ? 'w-20' : 'w-64'"
-       x-show="$store.sidebar.open"
-       x-transition:enter="transition ease-out duration-300"
-       x-transition:enter-start="-translate-x-full"
-       x-transition:enter-end="translate-x-0"
-       x-transition:leave="transition ease-in duration-200"
-       x-transition:leave-start="translate-x-0"
-       x-transition:leave-end="-translate-x-full"
+<aside class="fixed inset-y-0 left-0 z-30 flex flex-col bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 transition-all duration-300 lg:translate-x-0"
+       x-bind:class="{
+           'w-20': $store.sidebar.collapsed,
+           'w-64': !$store.sidebar.collapsed,
+           'translate-x-0': $store.sidebar.open,
+           '-translate-x-full': !$store.sidebar.open
+       }"
        @keydown.window.escape="if (window.innerWidth < 1024) $store.sidebar.close()">
     <div class="flex items-center h-16 px-4 border-b border-gray-200 dark:border-gray-800">
         <div class="flex items-center gap-3" x-show="!$store.sidebar.collapsed">
