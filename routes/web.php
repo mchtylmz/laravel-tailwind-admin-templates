@@ -28,6 +28,7 @@ Route::get('/settings', fn () => view('pages.settings'));
 Route::get('/users', fn () => view('pages.users', ['users' => $users]));
 Route::get('/forms', fn () => view('pages.forms'));
 Route::get('/components', fn () => view('pages.components'));
+Route::get('/example', fn () => view('pages.example'));
 Route::get('/error/403', fn () => view('pages.errors.403'));
 Route::get('/error/404', fn () => view('pages.errors.404'));
 Route::get('/error/500', fn () => view('pages.errors.500'));
