@@ -59,5 +59,92 @@ Alpine.data('toggle', (initial = false) => ({
     toggle() { this.on = !this.on }
 }))
 
+Alpine.data('datatable', (config) => ({
+    rows: config.rows,
+    columns: config.columns,
+    perPage: config.perPage || 10,
+    searchable: config.searchable !== false,
+    search: '',
+    sortField: config.columns?.[0]?.key || '',
+    sortDir: 'asc',
+    currentPage: 1,
+
+    get filteredRows() {
+        let data = this.rows
+        if (this.search) {
+            const q = this.search.toLowerCase()
+            data = data.filter(row =>
+                Object.values(row).some(v => String(v).toLowerCase().includes(q))
+            )
+        }
+        const field = this.sortField
+        if (field) {
+            data = [...data].sort((a, b) => {
+                const va = String(a[field] ?? '').toLowerCase()
+                const vb = String(b[field] ?? '').toLowerCase()
+                return this.sortDir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va)
+            })
+        }
+        return data
+    },
+
+    get totalPages() {
+        return Math.max(1, Math.ceil(this.filteredRows.length / this.perPage))
+    },
+
+    get paginatedRows() {
+        const start = (this.currentPage - 1) * this.perPage
+        return this.filteredRows.slice(start, start + this.perPage)
+    },
+
+    get startEntry() {
+        return this.filteredRows.length === 0 ? 0 : (this.currentPage - 1) * this.perPage + 1
+    },
+
+    get endEntry() {
+        return Math.min(this.currentPage * this.perPage, this.filteredRows.length)
+    },
+
+    get visiblePages() {
+        const total = this.totalPages
+        const curr = this.currentPage
+        const pages = []
+        let start = Math.max(1, curr - 2)
+        let end = Math.min(total, curr + 2)
+        if (end - start < 4) {
+            if (start === 1) end = Math.min(total, start + 4)
+            else start = Math.max(1, end - 4)
+        }
+        for (let i = start; i <= end; i++) pages.push(i)
+        return pages
+    },
+
+    sort(field) {
+        if (this.sortField === field) {
+            this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc'
+        } else {
+            this.sortField = field
+            this.sortDir = 'asc'
+        }
+        this.currentPage = 1
+    },
+
+    prevPage() {
+        if (this.currentPage > 1) this.currentPage--
+    },
+
+    nextPage() {
+        if (this.currentPage < this.totalPages) this.currentPage++
+    },
+
+    goToPage(page) {
+        this.currentPage = page
+    },
+
+    formatCell(row, key) {
+        return row[key] ?? ''
+    }
+}))
+
 window.Alpine = Alpine
 Alpine.start()
