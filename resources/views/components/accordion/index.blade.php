@@ -1,4 +1,4 @@
-<div x-data="{ open: '{{ $first ?? '' }}' }" {{ $attributes->merge(['class' => 'divide-y divide-gray-200 dark:divide-gray-800 border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden']) }}>
+<div x-data="{ open: '{{ $first ?? '' }}' }" {{ $attributes->except(['items', 'first'])->merge(['class' => 'divide-y divide-gray-200 dark:divide-gray-800 border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden']) }}>
     @foreach($items as $key => $item)
         <div x-data="{ id: '{{ $key }}' }" class="bg-white dark:bg-gray-900">
             <button @click="open = (open === id ? '' : id)" class="flex items-center justify-between w-full px-5 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">

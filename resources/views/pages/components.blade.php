@@ -208,6 +208,195 @@
         </x-card>
     </div>
 
+    <div class="space-y-6">
+        <x-card>
+            <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Badges</h2></x-slot:header>
+            <div class="space-y-4">
+                <div class="flex flex-wrap gap-2 items-center">
+                    <x-badge color="indigo">Indigo</x-badge>
+                    <x-badge color="emerald">Emerald</x-badge>
+                    <x-badge color="amber">Amber</x-badge>
+                    <x-badge color="red">Red</x-badge>
+                    <x-badge color="cyan">Cyan</x-badge>
+                    <x-badge color="purple">Purple</x-badge>
+                    <x-badge color="pink">Pink</x-badge>
+                    <x-badge color="gray">Gray</x-badge>
+                </div>
+                <div class="flex flex-wrap gap-2 items-center">
+                    <x-badge size="sm">Small</x-badge>
+                    <x-badge size="md">Medium</x-badge>
+                    <x-badge size="lg">Large</x-badge>
+                </div>
+                <div class="flex flex-wrap gap-2 items-center">
+                    <x-badge dot color="emerald">Online</x-badge>
+                    <x-badge dot color="amber">Away</x-badge>
+                    <x-badge dot color="red">Offline</x-badge>
+                    <x-badge :dismissible="true" color="indigo">Dismissible</x-badge>
+                </div>
+            </div>
+        </x-card>
+
+        <x-card>
+            <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Progress Bars</h2></x-slot:header>
+            <div class="space-y-5">
+                <x-progress label="Storage" :value="75" :percent="75" color="indigo" />
+                <x-progress label="Bandwidth" :value="45" :percent="45" color="emerald" />
+                <x-progress label="CPU" :value="60" :percent="60" color="amber" />
+                <x-progress label="Memory" :value="85" :percent="85" color="red" />
+                <div class="flex gap-4 pt-2">
+                    <x-progress :percent="50" size="sm" class="flex-1" />
+                    <x-progress :percent="50" size="md" class="flex-1" />
+                    <x-progress :percent="50" size="lg" class="flex-1" />
+                </div>
+            </div>
+        </x-card>
+
+        <x-card>
+            <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Spinner & Skeleton</h2></x-slot:header>
+            <div class="space-y-4">
+                <div class="flex flex-wrap gap-4 items-center">
+                    <x-spinner size="sm" />
+                    <x-spinner size="md" />
+                    <x-spinner size="lg" />
+                    <x-spinner size="xl" label="Loading..." />
+                </div>
+                <div class="grid grid-cols-4 gap-3">
+                    <x-skeleton size="text" />
+                    <x-skeleton size="title" />
+                    <x-skeleton size="avatar" />
+                    <x-skeleton size="card" />
+                </div>
+                <div>
+                    <x-skeleton size="image" />
+                </div>
+            </div>
+        </x-card>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <x-card>
+                <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Pagination</h2></x-slot:header>
+                <div class="space-y-3">
+                    <x-pagination :current="3" :total="10" />
+                    <p class="text-xs text-gray-500 mt-2">Click buttons to dispatch page-changed event.</p>
+                </div>
+            </x-card>
+
+            <x-card>
+                <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Breadcrumbs</h2></x-slot:header>
+                <x-breadcrumbs :crumbs="[
+                    ['label' => 'Home', 'url' => '/'],
+                    ['label' => 'Users', 'url' => '/users'],
+                    ['label' => 'Settings'],
+                ]" />
+                <p class="text-xs text-gray-500 mt-3">Deep linking example:</p>
+                <x-breadcrumbs :crumbs="[
+                    ['label' => 'Home', 'url' => '/'],
+                    ['label' => 'Dashboard', 'url' => '/dashboard'],
+                    ['label' => 'Analytics', 'url' => '/dashboard/analytics'],
+                    ['label' => 'Reports'],
+                ]" class="mt-2" />
+            </x-card>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <x-card>
+                <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Tooltips</h2></x-slot:header>
+                <div class="flex flex-wrap gap-6 items-center py-8">
+                    <x-tooltip position="top" trigger="true">
+                        <x-slot:trigger>
+                            <x-button variant="outline" size="sm">Top</x-button>
+                        </x-slot:trigger>
+                        Top tooltip
+                    </x-tooltip>
+                    <x-tooltip position="bottom">
+                        <x-slot:trigger>
+                            <x-button variant="outline" size="sm">Bottom</x-button>
+                        </x-slot:trigger>
+                        Bottom tooltip
+                    </x-tooltip>
+                    <x-tooltip position="left">
+                        <x-slot:trigger>
+                            <x-button variant="outline" size="sm">Left</x-button>
+                        </x-slot:trigger>
+                        Left tooltip
+                    </x-tooltip>
+                    <x-tooltip position="right">
+                        <x-slot:trigger>
+                            <x-button variant="outline" size="sm">Right</x-button>
+                        </x-slot:trigger>
+                        Right tooltip
+                    </x-tooltip>
+                </div>
+            </x-card>
+
+            <x-card>
+                <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Accordion</h2></x-slot:header>
+                <x-accordion :items="[
+                    ['title' => 'What is this template?', 'content' => 'This is a Laravel admin template built with Tailwind CSS v4 and Alpine.js.'],
+                    ['title' => 'How do I use components?', 'content' => 'Use the x- prefix followed by component name. Example: &lt;x-button&gt;Click&lt;/x-button&gt;.'],
+                    ['title' => 'Is dark mode supported?', 'content' => 'Yes, all components support dark mode out of the box. Toggle with the sun/moon icon in the navbar.'],
+                    ['title' => 'Can I customize colors?', 'content' => 'You can customize Tailwind colors in your app.css file or override component classes via attributes.'],
+                ]" />
+            </x-card>
+        </div>
+
+        <x-card>
+            <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Charts</h2></x-slot:header>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                    <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Line Chart</p>
+                    <x-chart type="line" :height="250"
+                        :labels="['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug']"
+                        :datasets="[[
+                            'label' => 'Revenue 2025',
+                            'data' => [300, 450, 380, 520, 490, 600, 550, 680],
+                            'borderColor' => '#6366f1',
+                            'backgroundColor' => 'rgba(99,102,241,0.1)',
+                            'fill' => true,
+                            'tension' => 0.4,
+                        ], [
+                            'label' => 'Revenue 2026',
+                            'data' => [400, 520, 460, 600, 580, 700, 650, 780],
+                            'borderColor' => '#10b981',
+                            'backgroundColor' => 'rgba(16,185,129,0.1)',
+                            'fill' => true,
+                            'tension' => 0.4,
+                        ]]" />
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Bar Chart</p>
+                    <x-chart type="bar" :height="250"
+                        :labels="['Mon','Tue','Wed','Thu','Fri','Sat','Sun']"
+                        :datasets="[[
+                            'label' => 'Visitors',
+                            'data' => [1200, 1900, 1500, 2200, 1800, 2400, 2100],
+                            'backgroundColor' => ['#6366f1','#10b981','#f59e0b','#ef4444','#06b6d4','#8b5cf6','#ec4899'],
+                        ]]" />
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Pie Chart</p>
+                    <x-chart type="pie" :height="250"
+                        :labels="['Direct', 'Organic', 'Social', 'Referral', 'Email']"
+                        :datasets="[[
+                            'label' => 'Traffic',
+                            'data' => [35, 28, 20, 12, 5],
+                            'backgroundColor' => ['#6366f1','#10b981','#f59e0b','#06b6d4','#ec4899'],
+                        ]]" />
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Doughnut Chart</p>
+                    <x-chart type="doughnut" :height="250"
+                        :labels="['Desktop', 'Mobile', 'Tablet']"
+                        :datasets="[[
+                            'label' => 'Devices',
+                            'data' => [55, 35, 10],
+                            'backgroundColor' => ['#6366f1','#10b981','#f59e0b'],
+                        ]]" />
+                </div>
+            </div>
+        </x-card>
+    </div>
+
     <div x-data="{ modalOpen: false, modalSize: 'md', modalTitle: 'Modal' }"
          @open-modal.window="modalSize = $event.detail.size; modalTitle = $event.detail.title || 'Modal ' + $event.detail.size.toUpperCase(); modalOpen = true"
          @keydown.window.escape="modalOpen = false">

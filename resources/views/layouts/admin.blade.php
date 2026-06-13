@@ -6,6 +6,7 @@
     <title>{{ $title ?? 'Laravel Admin Templates' }}</title>
     @vite('resources/css/app.css')
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
     <script>
         Alpine.store('sidebar', {
             open: window.innerWidth >= 1024,
@@ -74,6 +75,38 @@
                 if (duration > 0) setTimeout(() => this.remove(id), duration)
             },
             remove(id) { const t = this.toasts.find(t => t.id === id); if (t) t.show = false; setTimeout(() => { this.toasts = this.toasts.filter(t => t.id !== id) }, 300) }
+        }))
+        Alpine.data('chart', (config) => ({
+            chart: null,
+            type: config.type || 'line',
+            labels: config.labels || [],
+            datasets: config.datasets || [],
+            options: config.options || {},
+            init() {
+                this.$nextTick(() => {
+                    const ctx = this.$el.querySelector('canvas').getContext('2d')
+                    const isDark = document.documentElement.classList.contains('dark')
+                    const textColor = isDark ? '#9ca3af' : '#6b7280'
+                    const gridColor = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)'
+                    this.chart = new Chart(ctx, {
+                        type: this.type,
+                        data: { labels: this.labels, datasets: this.datasets },
+                        options: {
+                            responsive: true, maintainAspectRatio: false,
+                            plugins: {
+                                legend: { labels: { color: textColor, font: { size: 12 } } },
+                                tooltip: { mode: 'index', intersect: false }
+                            },
+                            scales: this.type !== 'pie' && this.type !== 'doughnut' ? {
+                                x: { grid: { color: gridColor }, ticks: { color: textColor } },
+                                y: { beginAtZero: true, grid: { color: gridColor }, ticks: { color: textColor } }
+                            } : undefined,
+                            ...this.options
+                        }
+                    })
+                })
+            },
+            destroy() { if (this.chart) { this.chart.destroy(); this.chart = null } }
         }))
     </script>
 </head>
