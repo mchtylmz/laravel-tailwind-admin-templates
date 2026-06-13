@@ -1,7 +1,7 @@
-<div x-data="commandPalette" @keydown.cmd.k.prevent="toggle()" @keydown.ctrl.k.prevent="toggle()" @toggle-cmd-k.window="toggle()">
+<div x-data="commandPalette" @keydown.cmd.k.window.prevent="toggle()" @keydown.ctrl.k.window.prevent="toggle()" @toggle-cmd-k.window="toggle()">
     <template x-teleport="body">
         <div x-show="open" x-transition.opacity.duration.150 class="fixed inset-0 z-[100] flex items-start justify-center pt-[15vh]"
-             @click="close()" @keydown.escape="close()">
+             @click="close()" @keydown.escape.window="close()">
             <div class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm"></div>
             <div @click.stop
                  class="relative w-full max-w-xl rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-2xl overflow-hidden">

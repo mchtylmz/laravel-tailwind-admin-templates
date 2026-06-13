@@ -110,13 +110,14 @@
             close() { this.open = false }
         }))
         Alpine.data('treeselect', ({ items = [] } = {}) => ({
-            open: false, selected: [],
+            open: false, selected: [], expanded: {},
             get flatItems() {
                 const flatten = (arr, depth = 0) => {
                     let r = []
                     arr.forEach(item => {
-                        r.push({ ...item, depth, open: item.open ?? false })
-                        if (item.children && item.open) r.push(...flatten(item.children, depth + 1))
+                        const isOpen = this.expanded[item.value] ?? false
+                        r.push({ ...item, depth, open: isOpen })
+                        if (item.children && isOpen) r.push(...flatten(item.children, depth + 1))
                     })
                     return r
                 }
@@ -124,7 +125,7 @@
             },
             isSelected(v) { return this.selected.some(s => s.value === v) },
             toggle(item) {
-                if (item.children) { item.open = !item.open; return }
+                if (item.children) { this.expanded[item.value] = !(this.expanded[item.value] ?? false); return }
                 const idx = this.selected.findIndex(s => s.value === item.value)
                 if (idx > -1) this.selected.splice(idx, 1)
                 else this.selected.push({ value: item.value, label: item.label })
