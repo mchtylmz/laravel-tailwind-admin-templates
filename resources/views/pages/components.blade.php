@@ -53,18 +53,15 @@
 
             <x-card>
                 <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Modals</h2></x-slot:header>
-                <div class="space-y-3">
-                    <div x-data="modal()">
-                        <x-button @click="open = true">Open Small Modal</x-button>
-                        <div x-show="open" x-transition.opacity class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/50" @click="open = false">
-                            <div @click.stop class="bg-white dark:bg-gray-900 rounded-xl shadow-xl border border-gray-200 dark:border-gray-800 w-full max-w-sm p-6 text-center">
-                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Modal Title</h3>
-                                <p class="text-sm text-gray-500 mb-4">This is a small modal dialog.</p>
-                                <x-button @click="open = false">Close</x-button>
-                            </div>
-                        </div>
+                <div class="space-y-4">
+                    <div class="flex flex-wrap gap-3">
+                        <x-button @click="$dispatch('open-modal', { size: 'sm', title: 'Small Modal' })">Small</x-button>
+                        <x-button @click="$dispatch('open-modal', { size: 'md', title: 'Medium Modal' })">Medium</x-button>
+                        <x-button @click="$dispatch('open-modal', { size: 'lg', title: 'Large Modal' })">Large</x-button>
+                        <x-button @click="$dispatch('open-modal', { size: 'xl', title: 'XL Modal' })">XL</x-button>
+                        <x-button @click="$dispatch('open-modal', { size: 'full', title: 'Full Screen Modal' })">Full</x-button>
                     </div>
-                    <p class="text-xs text-gray-500">Click the button to open a modal example (interactive).</p>
+                    <p class="text-xs text-gray-500">Click a button to open a modal with different sizes.</p>
                 </div>
             </x-card>
         </div>
@@ -140,5 +137,54 @@
                 </tr>
             </x-table>
         </x-card>
+    </div>
+
+    <div x-data="{ modalOpen: false, modalSize: 'md', modalTitle: 'Modal' }"
+         @open-modal.window="modalSize = $event.detail.size; modalTitle = $event.detail.title || 'Modal ' + $event.detail.size.toUpperCase(); modalOpen = true"
+         @keydown.window.escape="modalOpen = false">
+        <div x-show="modalOpen" x-transition.opacity.duration.200ms
+             class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/50 backdrop-blur-sm"
+             @click="modalOpen = false">
+            <div @click.stop
+                 class="bg-white dark:bg-gray-900 rounded-xl shadow-xl border border-gray-200 dark:border-gray-800 w-full overflow-hidden"
+                 x-bind:class="{
+                     'max-w-sm': modalSize === 'sm',
+                     'max-w-lg': modalSize === 'md',
+                     'max-w-2xl': modalSize === 'lg',
+                     'max-w-4xl': modalSize === 'xl',
+                     'max-w-full mx-4': modalSize === 'full',
+                 }"
+                 x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter-start="opacity-0 scale-95"
+                 x-transition:enter-end="opacity-100 scale-100"
+                 x-transition:leave="transition ease-in duration-150"
+                 x-transition:leave-start="opacity-100 scale-100"
+                 x-transition:leave-end="opacity-0 scale-95">
+                <div class="flex items-center justify-between px-5 py-4 border-b border-gray-200 dark:border-gray-800">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white" x-text="modalTitle"></h3>
+                    <button @click="modalOpen = false" class="p-1 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+                <div class="px-5 py-4 max-h-[70vh] overflow-y-auto text-sm text-gray-600 dark:text-gray-400">
+                    <p>This is a <span x-text="modalSize"></span>-sized modal dialog.</p>
+                    <p class="mt-2">You can close it by clicking the backdrop, the X button, or pressing Escape.</p>
+                    <template x-if="modalSize === 'full'">
+                        <div class="mt-4 grid grid-cols-3 gap-4">
+                            <div class="h-24 rounded-lg bg-indigo-100 dark:bg-indigo-900/30"></div>
+                            <div class="h-24 rounded-lg bg-emerald-100 dark:bg-emerald-900/30"></div>
+                            <div class="h-24 rounded-lg bg-amber-100 dark:bg-amber-900/30"></div>
+                            <div class="h-24 rounded-lg bg-rose-100 dark:bg-rose-900/30"></div>
+                            <div class="h-24 rounded-lg bg-cyan-100 dark:bg-cyan-900/30"></div>
+                            <div class="h-24 rounded-lg bg-purple-100 dark:bg-purple-900/30"></div>
+                        </div>
+                    </template>
+                </div>
+                <div class="flex items-center justify-end gap-2 px-5 py-3 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/50 rounded-b-xl">
+                    <x-button variant="outline" size="sm" @click="modalOpen = false">Cancel</x-button>
+                    <x-button size="sm" @click="modalOpen = false">Confirm</x-button>
+                </div>
+            </div>
+        </div>
     </div>
 </x-layouts-admin>

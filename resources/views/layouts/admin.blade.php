@@ -31,9 +31,14 @@
             close() { this.open = false },
             init() { this.align = this.$el.getAttribute('align') ?? 'left' }
         }))
-        Alpine.data('modal', () => ({
-            open: false,
-            init() { this.$watch('open', v => document.body.classList.toggle('overflow-hidden', v)) }
+        Alpine.data('modal', ({ size = 'md', closable = true } = {}) => ({
+            open: false, size, closable,
+            init() {
+                this.$watch('open', v => document.body.classList.toggle('overflow-hidden', v))
+            },
+            close() {
+                if (this.closable) this.open = false
+            }
         }))
         Alpine.data('tab', () => ({ active: 'tab-0', set(tab) { this.active = tab } }))
         Alpine.data('toggle', (i = false) => ({ on: i, toggle() { this.on = !this.on } }))
