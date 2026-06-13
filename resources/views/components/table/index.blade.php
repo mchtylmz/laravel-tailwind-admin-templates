@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => 'overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-800']) }}>
+<div class="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-800">
     <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-800">
         @isset($header)
             <thead class="bg-gray-50 dark:bg-gray-800/50">
