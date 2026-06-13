@@ -36,8 +36,12 @@ Alpine.store('darkMode', {
 
 Alpine.data('dropdown', () => ({
     open: false,
+    align: 'left',
     toggle() { this.open = !this.open },
-    close() { this.open = false }
+    close() { this.open = false },
+    init() {
+        this.align = this.$el.getAttribute('align') ?? 'left'
+    }
 }))
 
 Alpine.data('modal', () => ({
