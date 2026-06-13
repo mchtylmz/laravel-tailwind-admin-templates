@@ -55,6 +55,45 @@
             </a>
         </div>
         <div class="pt-4">
+            <p class="px-3 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2" x-show="!$store.sidebar.collapsed">Apps</p>
+            <a href="{{ url('/kanban') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('kanban') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                <x-heroicon-o-view-columns class="w-5 h-5 flex-shrink-0" />
+                <span x-show="!$store.sidebar.collapsed">Kanban</span>
+            </a>
+            <a href="{{ url('/chat') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('chat') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                <x-heroicon-o-chat-bubble-oval-left-ellipsis class="w-5 h-5 flex-shrink-0" />
+                <span x-show="!$store.sidebar.collapsed">Chat</span>
+            </a>
+            <a href="{{ url('/calendar') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('calendar') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                <x-heroicon-o-calendar class="w-5 h-5 flex-shrink-0" />
+                <span x-show="!$store.sidebar.collapsed">Calendar</span>
+            </a>
+            <a href="{{ url('/invoices') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('invoices') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                <x-heroicon-o-document-text class="w-5 h-5 flex-shrink-0" />
+                <span x-show="!$store.sidebar.collapsed">Invoices</span>
+            </a>
+            <a href="{{ url('/pricing') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('pricing') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                <x-heroicon-o-currency-dollar class="w-5 h-5 flex-shrink-0" />
+                <span x-show="!$store.sidebar.collapsed">Pricing</span>
+            </a>
+            <a href="{{ url('/faq') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('faq') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                <x-heroicon-o-question-mark-circle class="w-5 h-5 flex-shrink-0" />
+                <span x-show="!$store.sidebar.collapsed">FAQ</span>
+            </a>
+            <a href="{{ url('/gallery') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('gallery') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                <x-heroicon-o-photo class="w-5 h-5 flex-shrink-0" />
+                <span x-show="!$store.sidebar.collapsed">Gallery</span>
+            </a>
+            <a href="{{ url('/files') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('files') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                <x-heroicon-o-folder class="w-5 h-5 flex-shrink-0" />
+                <span x-show="!$store.sidebar.collapsed">Files</span>
+            </a>
+            <a href="{{ url('/timeline') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('timeline') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                <x-heroicon-o-clock class="w-5 h-5 flex-shrink-0" />
+                <span x-show="!$store.sidebar.collapsed">Timeline</span>
+            </a>
+        </div>
+        <div class="pt-4">
             <p class="px-3 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2" x-show="!$store.sidebar.collapsed">Components</p>
             <a href="{{ url('/components') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('components') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
                 <x-heroicon-o-cube class="w-5 h-5 flex-shrink-0" />
