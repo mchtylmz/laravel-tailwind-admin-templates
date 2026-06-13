@@ -115,6 +115,17 @@
         </x-card>
 
         <x-card>
+            <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Toast Notifications</h2></x-slot:header>
+            <div class="flex flex-wrap gap-3">
+                <x-button @click="$dispatch('toast', { type: 'success', title: 'Success', message: 'Your changes have been saved.' })">Success</x-button>
+                <x-button variant="danger" @click="$dispatch('toast', { type: 'error', title: 'Error', message: 'Something went wrong.' })">Error</x-button>
+                <x-button variant="warning" @click="$dispatch('toast', { type: 'warning', title: 'Warning', message: 'Your session is about to expire.' })">Warning</x-button>
+                <x-button variant="outline" @click="$dispatch('toast', { type: 'info', title: 'Info', message: 'A new version is available.' })">Info</x-button>
+            </div>
+            <p class="text-xs text-gray-500 mt-3">Click a button to trigger a toast (appears bottom-right).</p>
+        </x-card>
+
+        <x-card>
             <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Table</h2></x-slot:header>
             <x-table :header="['Name', 'Email', 'Status']">
                 <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50">

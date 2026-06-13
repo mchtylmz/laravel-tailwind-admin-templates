@@ -146,5 +146,24 @@ Alpine.data('datatable', (config) => ({
     }
 }))
 
+Alpine.data('toastStore', () => ({
+    toasts: [],
+    nextId: 0,
+
+    add({ type = 'info', title = '', message = '', duration = 4000 }) {
+        const id = this.nextId++
+        this.toasts.push({ id, type, title, message, show: true })
+        if (duration > 0) {
+            setTimeout(() => this.remove(id), duration)
+        }
+    },
+
+    remove(id) {
+        const toast = this.toasts.find(t => t.id === id)
+        if (toast) toast.show = false
+        setTimeout(() => { this.toasts = this.toasts.filter(t => t.id !== id) }, 300)
+    }
+}))
+
 window.Alpine = Alpine
 Alpine.start()
