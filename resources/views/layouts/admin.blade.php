@@ -76,6 +76,10 @@
             },
             remove(id) { const t = this.toasts.find(t => t.id === id); if (t) t.show = false; setTimeout(() => { this.toasts = this.toasts.filter(t => t.id !== id) }, 300) }
         }))
+        Alpine.data('rating', (val = 0, max = 5, interactive = false) => ({
+            value: val, max, interactive,
+            set(v) { if (this.interactive) this.value = v }
+        }))
         Alpine.data('chart', (config) => ({
             chart: null,
             type: config.type || 'line',
