@@ -6,7 +6,7 @@
                    text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800
                    disabled:opacity-30 disabled:cursor-not-allowed"
             x-bind:disabled="currentPage <= 1">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        <x-heroicon-o-chevron-left class="w-4 h-4" />
     </button>
 
     <template x-data="{ current: {{ $current ?? 1 }}, total: {{ $total ?? 1 }} }" x-if="total > 0">
@@ -29,6 +29,6 @@
                    text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800
                    disabled:opacity-30 disabled:cursor-not-allowed"
             x-bind:disabled="currentPage >= {{ $total ?? 1 }}">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <x-heroicon-o-chevron-right class="w-4 h-4" />
     </button>
 </nav>

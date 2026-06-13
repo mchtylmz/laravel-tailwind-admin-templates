@@ -11,16 +11,16 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <x-statscard label="Total Sales" value="$24,780" change="+15.3%" trend="up" color="emerald">
-            <x-slot:icon><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/></svg></x-slot:icon>
+            <x-slot:icon><x-heroicon-o-shopping-cart class="w-5 h-5" /></x-slot:icon>
         </x-statscard>
         <x-statscard label="Orders" value="342" change="+8.7%" trend="up" color="indigo">
-            <x-slot:icon><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg></x-slot:icon>
+            <x-slot:icon><x-heroicon-o-shopping-bag class="w-5 h-5" /></x-slot:icon>
         </x-statscard>
         <x-statscard label="Conversion" value="3.42%" change="+0.8%" trend="up" color="amber">
-            <x-slot:icon><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></x-slot:icon>
+            <x-slot:icon><x-heroicon-o-arrow-trending-up class="w-5 h-5" /></x-slot:icon>
         </x-statscard>
         <x-statscard label="Avg. Order" value="$72.45" change="+5.2%" trend="up" color="cyan">
-            <x-slot:icon><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/></svg></x-slot:icon>
+            <x-slot:icon><x-heroicon-o-banknotes class="w-5 h-5" /></x-slot:icon>
         </x-statscard>
     </div>
 

@@ -8,7 +8,7 @@
     <div class="flex-1 text-sm">{{ $slot }}</div>
     @if($dismissible ?? true)
         <button @click="visible = false" class="flex-shrink-0 p-1 rounded hover:bg-black/5 dark:hover:bg-white/10">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            <x-heroicon-o-x-mark class="w-4 h-4" />
         </button>
     @endif
 </div>

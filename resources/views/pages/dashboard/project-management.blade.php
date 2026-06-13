@@ -11,16 +11,16 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <x-statscard label="Active Projects" value="12" change="+2 this month" trend="up" color="indigo">
-            <x-slot:icon><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7"/></svg></x-slot:icon>
+            <x-slot:icon><x-heroicon-o-chart-bar-square class="w-5 h-5" /></x-slot:icon>
         </x-statscard>
         <x-statscard label="In Progress" value="8" change="+3 this week" trend="up" color="amber">
-            <x-slot:icon><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></x-slot:icon>
+            <x-slot:icon><x-heroicon-o-clock class="w-5 h-5" /></x-slot:icon>
         </x-statscard>
         <x-statscard label="Completed" value="24" change="+5 this month" trend="up" color="emerald">
-            <x-slot:icon><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></x-slot:icon>
+            <x-slot:icon><x-heroicon-o-check-circle class="w-5 h-5" /></x-slot:icon>
         </x-statscard>
         <x-statscard label="Team Members" value="18" change="+1 this month" trend="up" color="cyan">
-            <x-slot:icon><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197"/></svg></x-slot:icon>
+            <x-slot:icon><x-heroicon-o-user-group class="w-5 h-5" /></x-slot:icon>
         </x-statscard>
     </div>
 

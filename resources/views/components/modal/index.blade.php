@@ -25,7 +25,7 @@
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ $header }}</h3>
                         @if($closable ?? true)
                             <button @click="close()" class="p-1 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                                <x-heroicon-o-x-mark class="w-5 h-5" />
                             </button>
                         @endif
                     </div>
