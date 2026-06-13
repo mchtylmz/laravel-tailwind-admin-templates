@@ -7,6 +7,10 @@
     </div>
     <div class="flex items-center gap-2">
         <x-notification />
+        <button @click="window.dispatchEvent(new CustomEvent('toggle-cmd-k'))" class="hidden sm:flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-xs text-gray-400 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+            <x-heroicon-o-command-line class="w-3.5 h-3.5" />
+            <span>K</span>
+        </button>
         <button @click="$store.darkMode.toggle()" class="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
             <x-heroicon-o-moon x-show="!$store.darkMode.dark" class="w-5 h-5" />
             <x-heroicon-o-sun x-show="$store.darkMode.dark" class="w-5 h-5" />

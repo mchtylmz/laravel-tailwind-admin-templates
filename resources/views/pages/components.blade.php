@@ -282,6 +282,26 @@
             </x-card>
 
             <x-card>
+                <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Date Picker</h2></x-slot:header>
+                <div class="flex flex-wrap gap-4">
+                    <div class="w-64">
+                        <x-date-picker placeholder="Pick a date..." />
+                    </div>
+                    <div class="w-64">
+                        <x-date-picker value="2026-06-14" />
+                    </div>
+                </div>
+                <p class="text-xs text-gray-500 mt-2">Alpine-based date picker with month navigation.</p>
+            </x-card>
+
+            <x-card>
+                <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Command Palette</h2></x-slot:header>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">Press <kbd class="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-700 text-xs font-medium">⌘K</kbd> or <kbd class="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-700 text-xs font-medium">Ctrl+K</kbd> to open the command palette.</p>
+                <x-button size="sm" @click="window.dispatchEvent(new CustomEvent('toggle-cmd-k'))">Open Command Palette</x-button>
+                <p class="text-xs text-gray-500 mt-2">Quickly search and navigate to any page.</p>
+            </x-card>
+
+            <x-card>
                 <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Breadcrumbs</h2></x-slot:header>
                 <x-breadcrumbs :crumbs="[
                     ['label' => 'Home', 'url' => '/'],
