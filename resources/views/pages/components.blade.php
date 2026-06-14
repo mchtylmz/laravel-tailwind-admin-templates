@@ -616,7 +616,7 @@
             <x-card>
                 <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Countdown Timer</h2></x-slot:header>
                 <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">Countdown to a target date.</p>
-                <x-countdown target="{{ now()->addDays(7)->addHours(12)->format('Y-m-d H:i:s') }}" />
+                <x-countdown target="{{ now()->addDays(7)->addHours(12)->format('c') }}" />
             </x-card>
             <x-card>
                 <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">File Upload Preview</h2></x-slot:header>

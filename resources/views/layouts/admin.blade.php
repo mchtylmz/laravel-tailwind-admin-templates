@@ -271,9 +271,14 @@
             markAllRead() { this.notifications.forEach(n => n.read = true) },
             remove(id) { this.notifications = this.notifications.filter(n => n.id !== id) }
         }))
-        Alpine.data('carousel', ({ items = 1, autoplay = true } = {}) => ({
-            current: 0, total: items, autoplay, timer: null,
-            init() { if (this.autoplay) this.start(); this.$el.parentElement?.addEventListener('mouseenter', () => this.stop()); this.$el.parentElement?.addEventListener('mouseleave', () => this.start()) },
+        Alpine.data('carousel', ({ autoplay = true } = {}) => ({
+            current: 0, total: 0, autoplay, timer: null,
+            init() {
+                this.total = this.$el.querySelector('.flex')?.children.length ?? 1
+                if (this.autoplay) this.start()
+                this.$el.addEventListener('mouseenter', () => this.stop())
+                this.$el.addEventListener('mouseleave', () => this.start())
+            },
             next() { this.current = (this.current + 1) % this.total; this.reset() },
             prev() { this.current = (this.current - 1 + this.total) % this.total; this.reset() },
             goTo(i) { this.current = i; this.reset() },
