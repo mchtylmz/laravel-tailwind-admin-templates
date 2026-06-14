@@ -8,21 +8,42 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8" x-data="productDetail">
         <div>
             <x-carousel class="aspect-square rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800">
-                <div class="flex-shrink-0 w-full h-full bg-gradient-to-br from-indigo-100 to-indigo-200 dark:from-indigo-900/30 dark:to-indigo-800/20 flex items-center justify-center">
-                    <x-heroicon-o-speaker-wave class="w-24 h-24 text-indigo-400" />
+                <div class="flex-shrink-0 w-full h-full bg-gradient-to-br from-indigo-600 to-indigo-800 flex items-center justify-center relative">
+                    <div class="absolute inset-0 opacity-10" style="background: radial-gradient(circle at 30% 50%, white 0%, transparent 50%), radial-gradient(circle at 70% 30%, white 0%, transparent 40%)"></div>
+                    <div class="text-center">
+                        <div class="w-32 h-32 mx-auto rounded-3xl bg-white/20 flex items-center justify-center mb-4">
+                            <x-heroicon-o-speaker-wave class="w-16 h-16 text-white" />
+                        </div>
+                        <p class="text-white text-lg font-semibold">Wireless Headphones Pro</p>
+                        <p class="text-indigo-200 text-sm">Indigo Blue</p>
+                    </div>
                 </div>
-                <div class="flex-shrink-0 w-full h-full bg-gradient-to-br from-emerald-100 to-emerald-200 dark:from-emerald-900/30 dark:to-emerald-800/20 flex items-center justify-center">
-                    <x-heroicon-o-speaker-wave class="w-24 h-24 text-emerald-400" />
+                <div class="flex-shrink-0 w-full h-full bg-gradient-to-br from-emerald-600 to-emerald-800 flex items-center justify-center relative">
+                    <div class="absolute inset-0 opacity-10" style="background: radial-gradient(circle at 70% 60%, white 0%, transparent 50%), radial-gradient(circle at 30% 20%, white 0%, transparent 40%)"></div>
+                    <div class="text-center">
+                        <div class="w-32 h-32 mx-auto rounded-3xl bg-white/20 flex items-center justify-center mb-4">
+                            <x-heroicon-o-speaker-wave class="w-16 h-16 text-white" />
+                        </div>
+                        <p class="text-white text-lg font-semibold">Wireless Headphones Pro</p>
+                        <p class="text-emerald-200 text-sm">Forest Green</p>
+                    </div>
                 </div>
-                <div class="flex-shrink-0 w-full h-full bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-900/30 dark:to-amber-800/20 flex items-center justify-center">
-                    <x-heroicon-o-speaker-wave class="w-24 h-24 text-amber-400" />
+                <div class="flex-shrink-0 w-full h-full bg-gradient-to-br from-amber-600 to-orange-600 flex items-center justify-center relative">
+                    <div class="absolute inset-0 opacity-10" style="background: radial-gradient(circle at 40% 40%, white 0%, transparent 50%), radial-gradient(circle at 80% 70%, white 0%, transparent 40%)"></div>
+                    <div class="text-center">
+                        <div class="w-32 h-32 mx-auto rounded-3xl bg-white/20 flex items-center justify-center mb-4">
+                            <x-heroicon-o-speaker-wave class="w-16 h-16 text-white" />
+                        </div>
+                        <p class="text-white text-lg font-semibold">Wireless Headphones Pro</p>
+                        <p class="text-amber-200 text-sm">Amber Gold</p>
+                    </div>
                 </div>
             </x-carousel>
             <div class="flex gap-2 mt-3">
-                @foreach (['indigo', 'emerald', 'amber'] as $i => $color)
-                    <button @click="slide = {{ $i }}" class="w-16 h-16 rounded-lg border-2 cursor-pointer transition-all"
-                            :class="slide === {{ $i }} ? 'border-indigo-500 ring-2 ring-indigo-200' : 'border-gray-200 dark:border-gray-700 hover:border-gray-400'"
-                            style="background: linear-gradient(135deg, var(--tw-{{ $color }}-100), var(--tw-{{ $color }}-200))">
+                @foreach (['indigo' => 'from-indigo-600 to-indigo-800', 'emerald' => 'from-emerald-600 to-emerald-800', 'amber' => 'from-amber-600 to-orange-600'] as $color => $gradient)
+                    <button @click="slide = {{ $loop->index }}" class="w-16 h-16 rounded-lg border-2 cursor-pointer transition-all"
+                            :class="slide === {{ $loop->index }} ? 'border-indigo-500 ring-2 ring-indigo-200' : 'border-gray-200 dark:border-gray-700 hover:border-gray-400'"
+                            style="background: linear-gradient(135deg, var(--tw-{{ $color }}-600), var(--tw-{{ $color }}-800))">
                     </button>
                 @endforeach
             </div>

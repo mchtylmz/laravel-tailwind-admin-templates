@@ -149,11 +149,20 @@
             </x-card>
             <x-card>
                 <x-slot:header><h3 class="text-sm font-semibold text-gray-900 dark:text-white">Secure Checkout</h3></x-slot:header>
-                <div class="space-y-2 text-xs text-gray-500 dark:text-gray-400">
-                    @foreach (['lock-closed' => 'Your data is encrypted', 'shield-check' => 'Secure payment processing', 'credit-card' => 'We accept Visa, MC, Amex'] as $icon => $text)
-                        <div class="flex items-center gap-2">
-                            <x-heroicon-o-{{ $icon }} class="w-4 h-4" />
-                            <span>{{ $text }}</span>
+                <div class="divide-y divide-gray-100 dark:divide-gray-800">
+                    @foreach ([
+                        ['icon' => 'lock-closed', 'text' => 'Encrypted', 'sub' => 'Your data is secure'],
+                        ['icon' => 'shield-check', 'text' => 'Secure Payment', 'sub' => 'Protected transactions'],
+                        ['icon' => 'credit-card', 'text' => 'Accepted Cards', 'sub' => 'Visa, MC, Amex'],
+                    ] as $item)
+                        <div class="flex items-center gap-3 py-3 first:pt-0 last:pb-0">
+                            <div class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center flex-shrink-0">
+                                <x-heroicon-o-{{ $item['icon'] }} class="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-gray-900 dark:text-white">{{ $item['text'] }}</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">{{ $item['sub'] }}</p>
+                            </div>
                         </div>
                     @endforeach
                 </div>
