@@ -112,16 +112,21 @@
         <div>
             <x-card>
                 <x-slot:header><h3 class="text-sm font-semibold text-gray-900 dark:text-white">Shipping Info</h3></x-slot:header>
-                <div class="space-y-3 text-sm">
+                <div class="divide-y divide-gray-100 dark:divide-gray-800">
                     @foreach ([
-                        ['icon' => 'truck', 'text' => 'Free shipping on orders over $50'],
-                        ['icon' => 'arrow-path', 'text' => '30-day easy returns'],
-                        ['icon' => 'shield-check', 'text' => '1 year warranty included'],
-                        ['icon' => 'clock', 'text' => 'Estimated delivery: 3-5 business days'],
+                        ['icon' => 'truck', 'text' => 'Free shipping', 'sub' => 'On orders over $50'],
+                        ['icon' => 'arrow-path', 'text' => 'Easy returns', 'sub' => '30-day return policy'],
+                        ['icon' => 'shield-check', 'text' => 'Warranty', 'sub' => '1 year included'],
+                        ['icon' => 'clock', 'text' => 'Delivery', 'sub' => '3-5 business days'],
                     ] as $info)
-                        <div class="flex items-start gap-2">
-                            <x-heroicon-o-{{ $info['icon'] }} class="w-4 h-4 text-gray-400 mt-0.5" />
-                            <span class="text-gray-600 dark:text-gray-400">{{ $info['text'] }}</span>
+                        <div class="flex items-center gap-3 py-3 first:pt-0 last:pb-0">
+                            <div class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center flex-shrink-0">
+                                <x-heroicon-o-{{ $info['icon'] }} class="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-gray-900 dark:text-white">{{ $info['text'] }}</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">{{ $info['sub'] }}</p>
+                            </div>
                         </div>
                     @endforeach
                 </div>
