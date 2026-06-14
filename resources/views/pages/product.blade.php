@@ -1,0 +1,125 @@
+<x-layouts-admin>
+    <x-slot:title>Product Detail</x-slot:title>
+
+    <div class="mb-6">
+        <x-breadcrumbs :crumbs="[['label' => 'Home', 'url' => '/'], ['label' => 'Products', 'url' => '/'], ['label' => 'Wireless Headphones Pro']]" />
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div>
+            <x-carousel class="aspect-square rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800">
+                <div class="flex-shrink-0 w-full h-full bg-gradient-to-br from-indigo-100 to-indigo-200 dark:from-indigo-900/30 dark:to-indigo-800/20 flex items-center justify-center">
+                    <x-heroicon-o-speaker-wave class="w-24 h-24 text-indigo-400" />
+                </div>
+                <div class="flex-shrink-0 w-full h-full bg-gradient-to-br from-emerald-100 to-emerald-200 dark:from-emerald-900/30 dark:to-emerald-800/20 flex items-center justify-center">
+                    <x-heroicon-o-speaker-wave class="w-24 h-24 text-emerald-400" />
+                </div>
+                <div class="flex-shrink-0 w-full h-full bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-900/30 dark:to-amber-800/20 flex items-center justify-center">
+                    <x-heroicon-o-speaker-wave class="w-24 h-24 text-amber-400" />
+                </div>
+            </x-carousel>
+            <div class="flex gap-2 mt-3">
+                @foreach (['indigo', 'emerald', 'amber'] as $color)
+                    <div class="w-16 h-16 rounded-lg border-2 cursor-pointer transition-all bg-gradient-to-br from-{{ $color }}-100 to-{{ $color }}-200 dark:from-{{ $color }}-900/30 dark:to-{{ $color }}-800/20 {{ $loop->first ? 'border-indigo-500' : 'border-gray-200 dark:border-gray-700 hover:border-gray-400' }}"></div>
+                @endforeach
+            </div>
+        </div>
+
+        <div>
+            <div class="flex items-start gap-2 mb-1">
+                <x-badge size="sm" color="emerald">New</x-badge>
+                <x-badge size="sm" color="amber">Best Seller</x-badge>
+            </div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-1">Wireless Headphones Pro</h1>
+            <div class="flex items-center gap-2 mb-3">
+                <x-rating :value="5" size="sm" />
+                <span class="text-sm text-gray-500 dark:text-gray-400">(128 reviews)</span>
+            </div>
+            <p class="text-3xl font-bold text-gray-900 dark:text-white mb-4">$249.00</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-6">Premium wireless headphones with active noise cancellation, 30-hour battery life, and premium comfort for all-day wear.</p>
+
+            <div class="mb-6">
+                <p class="text-sm font-medium text-gray-900 dark:text-white mb-2">Color</p>
+                <div class="flex gap-2">
+                    @foreach (['#6366f1', '#10b981', '#f59e0b', '#ef4444', '#1e293b'] as $swatch)
+                        <button class="w-8 h-8 rounded-full border-2 {{ $loop->first ? 'border-indigo-500' : 'border-transparent' }}{{ $loop->first ? ' ring-2 ring-indigo-200' : '' }}" style="background-color: {{ $swatch }}"></button>
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4 mb-6">
+                <div class="flex items-center border border-gray-300 dark:border-gray-700 rounded-lg">
+                    <button class="px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">-</button>
+                    <span class="px-4 py-2 text-sm font-medium text-gray-900 dark:text-white border-x border-gray-300 dark:border-gray-700">1</span>
+                    <button class="px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">+</button>
+                </div>
+                <x-button size="lg" class="flex-1">Add to Cart</x-button>
+                <button class="w-12 h-12 rounded-lg border border-gray-300 dark:border-gray-700 flex items-center justify-center text-gray-400 hover:text-red-500 hover:border-red-300 transition-colors">
+                    <x-heroicon-o-heart class="w-5 h-5" />
+                </button>
+            </div>
+
+            <div class="border-t border-gray-200 dark:border-gray-800 pt-4 space-y-2 text-sm">
+                <div class="flex justify-between"><span class="text-gray-500 dark:text-gray-400">SKU</span><span class="text-gray-900 dark:text-white font-medium">WHP-001-BL</span></div>
+                <div class="flex justify-between"><span class="text-gray-500 dark:text-gray-400">Category</span><span class="text-gray-900 dark:text-white font-medium">Electronics</span></div>
+                <div class="flex justify-between"><span class="text-gray-500 dark:text-gray-400">Free Shipping</span><span class="text-emerald-600 font-medium">Yes</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
+        <div class="lg:col-span-2">
+            <x-card>
+                <x-slot:header>
+                    <div class="flex items-center gap-2">
+                        <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Reviews</h2>
+                        <x-badge size="sm" color="gray">128</x-badge>
+                    </div>
+                </x-slot:header>
+                <div class="divide-y divide-gray-200 dark:divide-gray-800">
+                    @foreach ([
+                        ['user' => 'AD', 'name' => 'Alex D.', 'rating' => 5, 'date' => '2 days ago', 'text' => 'Best headphones I\'ve ever owned. The noise cancellation is incredible and the battery lasts forever.', 'helpful' => 24],
+                        ['user' => 'SC', 'name' => 'Sarah C.', 'rating' => 4, 'date' => '1 week ago', 'text' => 'Great sound quality but the ear cups could be more comfortable for long sessions.', 'helpful' => 12],
+                        ['user' => 'JW', 'name' => 'James W.', 'rating' => 5, 'date' => '2 weeks ago', 'text' => 'Worth every penny. The build quality is premium and the soundstage is amazing.', 'helpful' => 8],
+                    ] as $review)
+                        <div class="py-4">
+                            <div class="flex items-center gap-3 mb-2">
+                                <x-avatar size="sm" color="indigo">{{ $review['user'] }}</x-avatar>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-900 dark:text-white">{{ $review['name'] }}</p>
+                                    <div class="flex items-center gap-2">
+                                        <x-rating :value="$review['rating']" size="xs" />
+                                        <span class="text-xs text-gray-500 dark:text-gray-400">{{ $review['date'] }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">{{ $review['text'] }}</p>
+                            <div class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+                                <span>{{ $review['helpful'] }} people found this helpful</span>
+                                <button class="text-indigo-600 dark:text-indigo-400 hover:underline">Helpful</button>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </x-card>
+        </div>
+        <div>
+            <x-card>
+                <x-slot:header><h3 class="text-sm font-semibold text-gray-900 dark:text-white">Shipping Info</h3></x-slot:header>
+                <div class="space-y-3 text-sm">
+                    @foreach ([
+                        ['icon' => 'truck', 'text' => 'Free shipping on orders over $50'],
+                        ['icon' => 'arrow-path', 'text' => '30-day easy returns'],
+                        ['icon' => 'shield-check', 'text' => '1 year warranty included'],
+                        ['icon' => 'clock', 'text' => 'Estimated delivery: 3-5 business days'],
+                    ] as $info)
+                        <div class="flex items-start gap-2">
+                            <x-heroicon-o-{{ $info['icon'] }} class="w-4 h-4 text-gray-400 mt-0.5" />
+                            <span class="text-gray-600 dark:text-gray-400">{{ $info['text'] }}</span>
+                        </div>
+                    @endforeach
+                </div>
+            </x-card>
+        </div>
+    </div>
+</x-layouts-admin>
