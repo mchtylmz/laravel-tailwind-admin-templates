@@ -92,6 +92,22 @@
                 <x-heroicon-o-clock class="w-5 h-5 flex-shrink-0" />
                 <span x-show="!$store.sidebar.collapsed">Timeline</span>
             </a>
+            <a href="{{ url('/product') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('product') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                <x-heroicon-o-shopping-bag class="w-5 h-5 flex-shrink-0" />
+                <span x-show="!$store.sidebar.collapsed">Products</span>
+            </a>
+            <a href="{{ url('/cart') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('cart') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                <x-heroicon-o-shopping-cart class="w-5 h-5 flex-shrink-0" />
+                <span x-show="!$store.sidebar.collapsed">Cart</span>
+            </a>
+            <a href="{{ url('/checkout') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('checkout') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                <x-heroicon-o-credit-card class="w-5 h-5 flex-shrink-0" />
+                <span x-show="!$store.sidebar.collapsed">Checkout</span>
+            </a>
+            <a href="{{ url('/help') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('help') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                <x-heroicon-o-lifebuoy class="w-5 h-5 flex-shrink-0" />
+                <span x-show="!$store.sidebar.collapsed">Help</span>
+            </a>
         </div>
         <div class="pt-4">
             <p class="px-3 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2" x-show="!$store.sidebar.collapsed">Components</p>
