@@ -8,33 +8,57 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8" x-data="productDetail">
         <div>
             <x-carousel class="aspect-square rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800">
-                <div class="flex-shrink-0 w-full h-full bg-gradient-to-br from-indigo-600 to-indigo-800 flex items-center justify-center relative">
-                    <div class="absolute inset-0 opacity-10" style="background: radial-gradient(circle at 30% 50%, white 0%, transparent 50%), radial-gradient(circle at 70% 30%, white 0%, transparent 40%)"></div>
-                    <div class="text-center">
-                        <div class="w-32 h-32 mx-auto rounded-3xl bg-white/20 flex items-center justify-center mb-4">
-                            <x-heroicon-o-speaker-wave class="w-16 h-16 text-white" />
+                <div class="flex-shrink-0 w-full h-full flex items-center justify-center relative" style="background: linear-gradient(135deg, #6366f1, #312e81)">
+                    <div class="absolute inset-0 opacity-[0.15]" style="background: radial-gradient(ellipse at 50% 25%, #c7d2fe 0%, transparent 60%)"></div>
+                    <div class="relative z-10 flex flex-col items-center">
+                        <div class="w-44 h-44 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm shadow-2xl mb-4">
+                            <svg class="w-28 h-28" viewBox="0 0 48 48" fill="none">
+                                <ellipse cx="24" cy="30" rx="16" ry="12" fill="white" fill-opacity="0.2"/>
+                                <rect x="19" y="18" width="10" height="16" rx="2" fill="white" fill-opacity="0.15"/>
+                                <ellipse cx="12" cy="24" rx="10" ry="12" fill="white"/>
+                                <ellipse cx="12" cy="24" rx="7" ry="9" fill="#6366f1"/>
+                                <ellipse cx="36" cy="24" rx="10" ry="12" fill="white"/>
+                                <ellipse cx="36" cy="24" rx="7" ry="9" fill="#6366f1"/>
+                                <path d="M18 10 Q24 2 30 10" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                            </svg>
                         </div>
-                        <p class="text-white text-lg font-semibold">Wireless Headphones Pro</p>
+                        <p class="text-white text-lg font-bold drop-shadow-lg">Wireless Headphones Pro</p>
                         <p class="text-indigo-200 text-sm">Indigo Blue</p>
                     </div>
                 </div>
-                <div class="flex-shrink-0 w-full h-full bg-gradient-to-br from-emerald-600 to-emerald-800 flex items-center justify-center relative">
-                    <div class="absolute inset-0 opacity-10" style="background: radial-gradient(circle at 70% 60%, white 0%, transparent 50%), radial-gradient(circle at 30% 20%, white 0%, transparent 40%)"></div>
-                    <div class="text-center">
-                        <div class="w-32 h-32 mx-auto rounded-3xl bg-white/20 flex items-center justify-center mb-4">
-                            <x-heroicon-o-speaker-wave class="w-16 h-16 text-white" />
+                <div class="flex-shrink-0 w-full h-full flex items-center justify-center relative" style="background: linear-gradient(135deg, #10b981, #064e3b)">
+                    <div class="absolute inset-0 opacity-[0.15]" style="background: radial-gradient(ellipse at 50% 25%, #6ee7b7 0%, transparent 60%)"></div>
+                    <div class="relative z-10 flex flex-col items-center">
+                        <div class="w-44 h-44 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm shadow-2xl mb-4">
+                            <svg class="w-28 h-28" viewBox="0 0 48 48" fill="none">
+                                <ellipse cx="24" cy="30" rx="16" ry="12" fill="white" fill-opacity="0.2"/>
+                                <rect x="19" y="18" width="10" height="16" rx="2" fill="white" fill-opacity="0.15"/>
+                                <ellipse cx="12" cy="24" rx="10" ry="12" fill="white"/>
+                                <ellipse cx="12" cy="24" rx="7" ry="9" fill="#10b981"/>
+                                <ellipse cx="36" cy="24" rx="10" ry="12" fill="white"/>
+                                <ellipse cx="36" cy="24" rx="7" ry="9" fill="#10b981"/>
+                                <path d="M18 10 Q24 2 30 10" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                            </svg>
                         </div>
-                        <p class="text-white text-lg font-semibold">Wireless Headphones Pro</p>
+                        <p class="text-white text-lg font-bold drop-shadow-lg">Wireless Headphones Pro</p>
                         <p class="text-emerald-200 text-sm">Forest Green</p>
                     </div>
                 </div>
-                <div class="flex-shrink-0 w-full h-full bg-gradient-to-br from-amber-600 to-orange-600 flex items-center justify-center relative">
-                    <div class="absolute inset-0 opacity-10" style="background: radial-gradient(circle at 40% 40%, white 0%, transparent 50%), radial-gradient(circle at 80% 70%, white 0%, transparent 40%)"></div>
-                    <div class="text-center">
-                        <div class="w-32 h-32 mx-auto rounded-3xl bg-white/20 flex items-center justify-center mb-4">
-                            <x-heroicon-o-speaker-wave class="w-16 h-16 text-white" />
+                <div class="flex-shrink-0 w-full h-full flex items-center justify-center relative" style="background: linear-gradient(135deg, #f59e0b, #b45309)">
+                    <div class="absolute inset-0 opacity-[0.15]" style="background: radial-gradient(ellipse at 50% 25%, #fde68a 0%, transparent 60%)"></div>
+                    <div class="relative z-10 flex flex-col items-center">
+                        <div class="w-44 h-44 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm shadow-2xl mb-4">
+                            <svg class="w-28 h-28" viewBox="0 0 48 48" fill="none">
+                                <ellipse cx="24" cy="30" rx="16" ry="12" fill="white" fill-opacity="0.2"/>
+                                <rect x="19" y="18" width="10" height="16" rx="2" fill="white" fill-opacity="0.15"/>
+                                <ellipse cx="12" cy="24" rx="10" ry="12" fill="white"/>
+                                <ellipse cx="12" cy="24" rx="7" ry="9" fill="#f59e0b"/>
+                                <ellipse cx="36" cy="24" rx="10" ry="12" fill="white"/>
+                                <ellipse cx="36" cy="24" rx="7" ry="9" fill="#f59e0b"/>
+                                <path d="M18 10 Q24 2 30 10" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                            </svg>
                         </div>
-                        <p class="text-white text-lg font-semibold">Wireless Headphones Pro</p>
+                        <p class="text-white text-lg font-bold drop-shadow-lg">Wireless Headphones Pro</p>
                         <p class="text-amber-200 text-sm">Amber Gold</p>
                     </div>
                 </div>

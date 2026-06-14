@@ -38,6 +38,7 @@ Route::get('/faq', fn () => view('pages.faq'));
 Route::get('/gallery', fn () => view('pages.gallery'));
 Route::get('/files', fn () => view('pages.files'));
 Route::get('/timeline', fn () => view('pages.timeline-page'));
+Route::get('/products', fn () => view('pages.products'));
 Route::get('/product', fn () => view('pages.product'));
 Route::get('/cart', fn () => view('pages.cart'));
 Route::get('/checkout', fn () => view('pages.checkout'));

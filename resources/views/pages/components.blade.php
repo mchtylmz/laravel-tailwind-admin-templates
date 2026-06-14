@@ -591,14 +591,111 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <x-card>
                 <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Drawer / Offcanvas</h2></x-slot:header>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">Slide-in panel from the right side.</p>
-                <x-button size="sm" @click="$dispatch('open-drawer')">Open Drawer</x-button>
-                <div x-data="drawer({ side: 'right' })" @open-drawer.window="openDrawer">
-                    <div class="space-y-4">
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Drawer content goes here. You can add forms, settings, or any content.</p>
-                        <div class="h-20 rounded bg-indigo-100 dark:bg-indigo-900/30"></div>
-                        <div class="h-20 rounded bg-emerald-100 dark:bg-emerald-900/30"></div>
-                        <div class="h-20 rounded bg-amber-100 dark:bg-amber-900/30"></div>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Slide-in panels from 4 directions.</p>
+                <div class="flex flex-wrap gap-2">
+                    <div x-data="drawer({ side: 'right' })">
+                        <x-button size="sm" @click="openDrawer">Right</x-button>
+                        <div x-show="open" x-transition.opacity class="fixed inset-0 z-40 bg-gray-900/50" @click="close"></div>
+                        <div x-show="open"
+                             x-transition:enter="transition-transform duration-300"
+                             x-transition:enter-start="translate-x-full"
+                             x-transition:enter-end="translate-x-0"
+                             x-transition:leave="transition-transform duration-300"
+                             x-transition:leave-start="translate-x-0"
+                             x-transition:leave-end="translate-x-full"
+                             class="fixed inset-y-0 right-0 z-50 w-80 max-w-full bg-white dark:bg-gray-900 shadow-xl border-l border-gray-200 dark:border-gray-800">
+                            <div class="flex items-center justify-between px-4 h-14 border-b border-gray-200 dark:border-gray-800">
+                                <h3 class="font-semibold text-gray-900 dark:text-white">Settings</h3>
+                                <button @click="close" class="p-1 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"><x-heroicon-o-x-mark class="w-5 h-5" /></button>
+                            </div>
+                            <div class="p-4 overflow-y-auto h-[calc(100%-3.5rem)] space-y-5">
+                                <div class="flex items-center justify-between"><span class="text-sm text-gray-700 dark:text-gray-300">Dark Mode</span><x-checkbox name="dark" checked /></div>
+                                <div class="flex items-center justify-between"><span class="text-sm text-gray-700 dark:text-gray-300">Notifications</span><x-checkbox name="notif" checked /></div>
+                                <div class="flex items-center justify-between"><span class="text-sm text-gray-700 dark:text-gray-300">Auto-save</span><x-checkbox name="autosave" /></div>
+                                <hr class="border-gray-200 dark:border-gray-700">
+                                <div><x-label>Language</x-label><x-select name="lang"><option>English</option><option>Turkish</option><option>German</option></x-select></div>
+                                <div><x-button class="w-full" size="sm">Save Settings</x-button></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div x-data="drawer({ side: 'left' })">
+                        <x-button size="sm" variant="secondary" @click="openDrawer">Left</x-button>
+                        <div x-show="open" x-transition.opacity class="fixed inset-0 z-40 bg-gray-900/50" @click="close"></div>
+                        <div x-show="open"
+                             x-transition:enter="transition-transform duration-300"
+                             x-transition:enter-start="-translate-x-full"
+                             x-transition:enter-end="translate-x-0"
+                             x-transition:leave="transition-transform duration-300"
+                             x-transition:leave-start="translate-x-0"
+                             x-transition:leave-end="-translate-x-full"
+                             class="fixed inset-y-0 left-0 z-50 w-72 max-w-full bg-white dark:bg-gray-900 shadow-xl border-r border-gray-200 dark:border-gray-800">
+                            <div class="flex items-center justify-between px-4 h-14 border-b border-gray-200 dark:border-gray-800">
+                                <h3 class="font-semibold text-gray-900 dark:text-white">Menu</h3>
+                                <button @click="close" class="p-1 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"><x-heroicon-o-x-mark class="w-5 h-5" /></button>
+                            </div>
+                            <div class="p-3 overflow-y-auto h-[calc(100%-3.5rem)] space-y-1">
+                                @foreach ([['icon' => 'home', 'label' => 'Dashboard'], ['icon' => 'chart-bar', 'label' => 'Analytics'], ['icon' => 'users', 'label' => 'Users'], ['icon' => 'cog-6-tooth', 'label' => 'Settings'], ['icon' => 'question-mark-circle', 'label' => 'Help']] as $m)
+                                    <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                                        <x-dynamic-component :component="'heroicon-o-' . $m['icon']" class="w-5 h-5 text-gray-400" />
+                                        {{ $m['label'] }}
+                                    </a>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div x-data="drawer({ side: 'top' })">
+                        <x-button size="sm" variant="success" @click="openDrawer">Top</x-button>
+                        <div x-show="open" x-transition.opacity class="fixed inset-0 z-40 bg-gray-900/50" @click="close"></div>
+                        <div x-show="open"
+                             x-transition:enter="transition-transform duration-300"
+                             x-transition:enter-start="-translate-y-full"
+                             x-transition:enter-end="translate-y-0"
+                             x-transition:leave="transition-transform duration-300"
+                             x-transition:leave-start="translate-y-0"
+                             x-transition:leave-end="-translate-y-full"
+                             class="fixed inset-x-0 top-0 z-50 bg-white dark:bg-gray-900 shadow-xl border-b border-gray-200 dark:border-gray-800">
+                            <div class="flex items-center justify-between px-4 h-14 border-b border-gray-200 dark:border-gray-800">
+                                <h3 class="font-semibold text-gray-900 dark:text-white">Notifications</h3>
+                                <button @click="close" class="p-1 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"><x-heroicon-o-x-mark class="w-5 h-5" /></button>
+                            </div>
+                            <div class="p-4 max-h-64 overflow-y-auto space-y-3">
+                                @foreach ([['title' => 'New order', 'desc' => 'Order #1234 has been placed', 'color' => '#6366f1'], ['title' => 'Payment received', 'desc' => '$249.00 from John Doe', 'color' => '#10b981'], ['title' => 'Server alert', 'desc' => 'CPU usage exceeded 90%', 'color' => '#ef4444'], ['title' => 'New user', 'desc' => 'Sarah created an account', 'color' => '#8b5cf6']] as $n)
+                                    <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+                                        <div class="w-2 h-2 mt-1.5 rounded-full flex-shrink-0" style="background-color: {{ $n['color'] }}"></div>
+                                        <div><p class="text-sm font-medium text-gray-900 dark:text-white">{{ $n['title'] }}</p><p class="text-xs text-gray-500">{{ $n['desc'] }}</p></div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div x-data="drawer({ side: 'bottom' })">
+                        <x-button size="sm" variant="warning" @click="openDrawer">Bottom</x-button>
+                        <div x-show="open" x-transition.opacity class="fixed inset-0 z-40 bg-gray-900/50" @click="close"></div>
+                        <div x-show="open"
+                             x-transition:enter="transition-transform duration-300"
+                             x-transition:enter-start="translate-y-full"
+                             x-transition:enter-end="translate-y-0"
+                             x-transition:leave="transition-transform duration-300"
+                             x-transition:leave-start="translate-y-0"
+                             x-transition:leave-end="translate-y-full"
+                             class="fixed inset-x-0 bottom-0 z-50 bg-white dark:bg-gray-900 shadow-xl border-t border-gray-200 dark:border-gray-800 rounded-t-2xl">
+                            <div class="flex items-center justify-between px-4 h-14 border-b border-gray-200 dark:border-gray-800">
+                                <h3 class="font-semibold text-gray-900 dark:text-white">Share</h3>
+                                <button @click="close" class="p-1 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"><x-heroicon-o-x-mark class="w-5 h-5" /></button>
+                            </div>
+                            <div class="p-4 overflow-y-auto max-h-64">
+                                <div class="grid grid-cols-5 gap-4">
+                                    @foreach ([['icon' => 'chat-bubble-left', 'label' => 'Message', 'bg' => '#6366f115', 'fg' => '#6366f1'], ['icon' => 'envelope', 'label' => 'Email', 'bg' => '#10b98115', 'fg' => '#10b981'], ['icon' => 'link', 'label' => 'Copy', 'bg' => '#f59e0b15', 'fg' => '#f59e0b'], ['icon' => 'share', 'label' => 'More', 'bg' => '#8b5cf615', 'fg' => '#8b5cf6'], ['icon' => 'trash', 'label' => 'Delete', 'bg' => '#ef444415', 'fg' => '#ef4444']] as $s)
+                                        <button @click="close" class="flex flex-col items-center gap-1.5 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                                            <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background-color: {{ $s['bg'] }}; color: {{ $s['fg'] }}">
+                                                <x-dynamic-component :component="'heroicon-o-' . $s['icon']" class="w-5 h-5" />
+                                            </div>
+                                            <span class="text-xs text-gray-600 dark:text-gray-400">{{ $s['label'] }}</span>
+                                        </button>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </x-card>
