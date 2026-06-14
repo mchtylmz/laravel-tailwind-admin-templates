@@ -2,10 +2,10 @@
     <x-slot:title>Product Detail</x-slot:title>
 
     <div class="mb-6">
-        <x-breadcrumbs :crumbs="[['label' => 'Home', 'url' => '/'], ['label' => 'Products', 'url' => '/'], ['label' => 'Wireless Headphones Pro']]" />
+        <x-breadcrumbs :crumbs="[['label' => 'Home', 'url' => '/'], ['label' => 'Products', 'url' => '/products'], ['label' => 'Wireless Headphones Pro']]" />
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8" x-data="productDetail">
         <div>
             <x-carousel class="aspect-square rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800">
                 <div class="flex-shrink-0 w-full h-full bg-gradient-to-br from-indigo-100 to-indigo-200 dark:from-indigo-900/30 dark:to-indigo-800/20 flex items-center justify-center">
@@ -19,8 +19,11 @@
                 </div>
             </x-carousel>
             <div class="flex gap-2 mt-3">
-                @foreach (['indigo', 'emerald', 'amber'] as $color)
-                    <div class="w-16 h-16 rounded-lg border-2 cursor-pointer transition-all bg-gradient-to-br from-{{ $color }}-100 to-{{ $color }}-200 dark:from-{{ $color }}-900/30 dark:to-{{ $color }}-800/20 {{ $loop->first ? 'border-indigo-500' : 'border-gray-200 dark:border-gray-700 hover:border-gray-400' }}"></div>
+                @foreach (['indigo', 'emerald', 'amber'] as $i => $color)
+                    <button @click="slide = {{ $i }}" class="w-16 h-16 rounded-lg border-2 cursor-pointer transition-all"
+                            :class="slide === {{ $i }} ? 'border-indigo-500 ring-2 ring-indigo-200' : 'border-gray-200 dark:border-gray-700 hover:border-gray-400'"
+                            style="background: linear-gradient(135deg, var(--tw-{{ $color }}-100), var(--tw-{{ $color }}-200))">
+                    </button>
                 @endforeach
             </div>
         </div>
@@ -41,20 +44,23 @@
             <div class="mb-6">
                 <p class="text-sm font-medium text-gray-900 dark:text-white mb-2">Color</p>
                 <div class="flex gap-2">
-                    @foreach (['#6366f1', '#10b981', '#f59e0b', '#ef4444', '#1e293b'] as $swatch)
-                        <button class="w-8 h-8 rounded-full border-2 {{ $loop->first ? 'border-indigo-500' : 'border-transparent' }}{{ $loop->first ? ' ring-2 ring-indigo-200' : '' }}" style="background-color: {{ $swatch }}"></button>
+                    @foreach (['#6366f1' => 'border-indigo-500 ring-indigo-200', '#10b981' => 'border-emerald-500 ring-emerald-200', '#f59e0b' => 'border-amber-500 ring-amber-200', '#ef4444' => 'border-red-500 ring-red-200', '#1e293b' => 'border-gray-800 ring-gray-400'] as $hex => $classes)
+                        <button @click="selectedColor = '{{ $hex }}'" class="w-8 h-8 rounded-full border-2 transition-all"
+                                :class="selectedColor === '{{ $hex }}' ? 'border-{{ explode(" ", $classes)[0] }} ring-2 ring-{{ explode(" ", $classes)[1] }}' : 'border-transparent'"
+                                style="background-color: {{ $hex }}"></button>
                     @endforeach
                 </div>
             </div>
 
             <div class="flex items-center gap-4 mb-6">
                 <div class="flex items-center border border-gray-300 dark:border-gray-700 rounded-lg">
-                    <button class="px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">-</button>
-                    <span class="px-4 py-2 text-sm font-medium text-gray-900 dark:text-white border-x border-gray-300 dark:border-gray-700">1</span>
-                    <button class="px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">+</button>
+                    <button @click="qty = Math.max(1, qty - 1)" class="px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">-</button>
+                    <span class="px-4 py-2 text-sm font-medium text-gray-900 dark:text-white border-x border-gray-300 dark:border-gray-700" x-text="qty"></span>
+                    <button @click="qty++" class="px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">+</button>
                 </div>
                 <x-button size="lg" class="flex-1">Add to Cart</x-button>
-                <button class="w-12 h-12 rounded-lg border border-gray-300 dark:border-gray-700 flex items-center justify-center text-gray-400 hover:text-red-500 hover:border-red-300 transition-colors">
+                <button @click="wishlisted = !wishlisted" class="w-12 h-12 rounded-lg border border-gray-300 dark:border-gray-700 flex items-center justify-center transition-colors"
+                        :class="wishlisted ? 'text-red-500 border-red-300 bg-red-50 dark:bg-red-900/20' : 'text-gray-400 hover:text-red-500 hover:border-red-300'">
                     <x-heroicon-o-heart class="w-5 h-5" />
                 </button>
             </div>
@@ -122,4 +128,12 @@
             </x-card>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('productDetail', () => ({
+                qty: 1, slide: 0, wishlisted: false, selectedColor: '#6366f1'
+            }))
+        })
+    </script>
 </x-layouts-admin>

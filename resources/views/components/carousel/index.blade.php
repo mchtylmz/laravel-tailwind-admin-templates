@@ -1,5 +1,5 @@
-<div x-data="carousel({ items: $el.children.length, autoplay: $el.getAttribute('autoplay') !== null })" class="relative overflow-hidden rounded-xl" {{ $attributes }}>
-    <div class="flex transition-transform duration-500 ease-in-out" :style="'transform: translateX(-' + current * 100 + '%)'">
+<div x-data="carousel({ items: $el.querySelector('.carousel-track')?.children.length ?? 1, autoplay: $el.getAttribute('autoplay') !== null })" class="relative overflow-hidden rounded-xl" {{ $attributes }}>
+    <div class="carousel-track flex transition-transform duration-500 ease-in-out" :style="'transform: translateX(-' + current * 100 + '%)'">
         {{ $slot }}
     </div>
     <button @click="prev" class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 dark:bg-gray-900/80 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-900 transition-colors shadow">
