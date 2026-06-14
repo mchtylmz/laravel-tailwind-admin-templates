@@ -551,6 +551,84 @@
                 </div>
             </div>
         </x-card>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <x-card>
+                <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Carousel</h2></x-slot:header>
+                <x-carousel autoplay class="aspect-video">
+                    <div class="flex-shrink-0 w-full h-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xl font-bold">Slide 1</div>
+                    <div class="flex-shrink-0 w-full h-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-xl font-bold">Slide 2</div>
+                    <div class="flex-shrink-0 w-full h-full bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white text-xl font-bold">Slide 3</div>
+                </x-carousel>
+            </x-card>
+            <x-card>
+                <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Stepper / Wizard</h2></x-slot:header>
+                <div x-data="stepper" x-init="total = 3">
+                    <div class="flex items-center justify-between mb-6">
+                        <template x-for="(_, i) in Array.from({ length: total })" :key="i">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-colors"
+                                     :class="i + 1 <= step ? 'bg-indigo-600 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400'"
+                                     x-text="i + 1"></div>
+                                <div x-show="i < total - 1" class="w-12 h-0.5 mx-1 transition-colors" :class="i + 1 < step ? 'bg-indigo-600' : 'bg-gray-200 dark:bg-gray-700'"></div>
+                            </div>
+                        </template>
+                    </div>
+                    <div class="min-h-[120px]">
+                        <div x-show="step === 1"><p class="text-sm text-gray-600 dark:text-gray-400">Step 1: Account details</p></div>
+                        <div x-show="step === 2"><p class="text-sm text-gray-600 dark:text-gray-400">Step 2: Profile information</p></div>
+                        <div x-show="step === 3"><p class="text-sm text-gray-600 dark:text-gray-400">Step 3: Confirmation</p></div>
+                    </div>
+                    <div class="flex justify-between mt-4">
+                        <x-button variant="outline" size="sm" @click="prev" x-show="step > 1">Back</x-button>
+                        <x-button size="sm" @click="next" x-show="step < total">Next</x-button>
+                        <x-button size="sm" @click="next" x-show="step === total" variant="primary">Done</x-button>
+                    </div>
+                </div>
+            </x-card>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <x-card>
+                <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Drawer / Offcanvas</h2></x-slot:header>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">Slide-in panel from the right side.</p>
+                <x-button size="sm" @click="$dispatch('open-drawer')">Open Drawer</x-button>
+                <div x-data="drawer({ side: 'right' })" @open-drawer.window="openDrawer">
+                    <div class="space-y-4">
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Drawer content goes here. You can add forms, settings, or any content.</p>
+                        <div class="h-20 rounded bg-indigo-100 dark:bg-indigo-900/30"></div>
+                        <div class="h-20 rounded bg-emerald-100 dark:bg-emerald-900/30"></div>
+                        <div class="h-20 rounded bg-amber-100 dark:bg-amber-900/30"></div>
+                    </div>
+                </div>
+            </x-card>
+            <x-card>
+                <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">OTP Input</h2></x-slot:header>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">Single-use code entry with auto-focus.</p>
+                <x-otp-input :length="6" />
+                <div class="mt-3">
+                    <x-button size="sm">Verify Code</x-button>
+                </div>
+            </x-card>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <x-card>
+                <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Countdown Timer</h2></x-slot:header>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">Countdown to a target date.</p>
+                <x-countdown target="{{ now()->addDays(7)->addHours(12)->format('Y-m-d H:i:s') }}" />
+            </x-card>
+            <x-card>
+                <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">File Upload Preview</h2></x-slot:header>
+                <x-file-upload />
+            </x-card>
+        </div>
+
+        <x-card>
+            <x-slot:header><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Cookie Consent</h2></x-slot:header>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">A fixed bottom banner appears when consent is not given. Click accept to dismiss (stored in localStorage).</p>
+            <x-button size="sm" @click="localStorage.removeItem('cookie_consent'); location.reload()">Reset</x-button>
+        </x-card>
     </div>
 
     <div x-data="{ modalOpen: false, modalSize: 'md', modalTitle: 'Modal' }"

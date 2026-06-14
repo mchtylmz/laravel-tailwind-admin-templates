@@ -263,6 +263,84 @@
             markAllRead() { this.notifications.forEach(n => n.read = true) },
             remove(id) { this.notifications = this.notifications.filter(n => n.id !== id) }
         }))
+        Alpine.data('carousel', ({ items = 1, autoplay = true } = {}) => ({
+            current: 0, total: items, autoplay, timer: null,
+            init() { if (this.autoplay) this.start(); this.$el.parentElement?.addEventListener('mouseenter', () => this.stop()); this.$el.parentElement?.addEventListener('mouseleave', () => this.start()) },
+            next() { this.current = (this.current + 1) % this.total; this.reset() },
+            prev() { this.current = (this.current - 1 + this.total) % this.total; this.reset() },
+            goTo(i) { this.current = i; this.reset() },
+            start() { this.timer = setInterval(() => this.next(), 4000) },
+            stop() { clearInterval(this.timer); this.timer = null },
+            reset() { this.stop(); if (this.autoplay) this.start() }
+        }))
+        Alpine.data('stepper', () => ({
+            step: 1, total: 0,
+            next() { if (this.step < this.total) this.step++ },
+            prev() { if (this.step > 1) this.step-- },
+            goTo(s) { this.step = s }
+        }))
+        Alpine.data('drawer', ({ side = 'right' } = {}) => ({
+            open: false, side,
+            toggle() { this.open = !this.open; document.body.classList.toggle('overflow-hidden', this.open) },
+            openDrawer() { this.open = true; document.body.classList.add('overflow-hidden') },
+            close() { this.open = false; document.body.classList.remove('overflow-hidden') }
+        }))
+        Alpine.data('otpInput', ({ length = 4 } = {}) => ({
+            length, values: new Array(length).fill(''),
+            handleInput(i, e) {
+                const val = e.target.value.replace(/\D/g, '').slice(-1)
+                this.values[i] = val
+                if (val && i < this.length - 1) this.$refs.input_el[i + 1]?.focus()
+            },
+            handleBackspace(i) {
+                if (!this.values[i] && i > 0) { this.values[i - 1] = ''; this.$refs.input_el[i - 1]?.focus() }
+                else this.values[i] = ''
+            },
+            handlePaste(e, start) {
+                const data = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '').slice(0, this.length)
+                for (let j = 0; j < data.length; j++) { if (start + j < this.length) this.values[start + j] = data[j] }
+                const next = Math.min(start + data.length, this.length - 1)
+                this.$refs.input_el[next]?.focus()
+            }
+        }))
+        Alpine.data('countdown', ({ target = '', label = '' } = {}) => ({
+            target, label, days: 0, hours: 0, minutes: 0, seconds: 0, expired: false, timer: null,
+            init() { this.calc(); this.timer = setInterval(() => this.calc(), 1000) },
+            destroy() { clearInterval(this.timer) },
+            calc() {
+                const diff = new Date(this.target).getTime() - Date.now()
+                if (diff <= 0) { this.expired = true; clearInterval(this.timer); return }
+                this.days = Math.floor(diff / 86400000)
+                this.hours = Math.floor((diff % 86400000) / 3600000)
+                this.minutes = Math.floor((diff % 3600000) / 60000)
+                this.seconds = Math.floor((diff % 60000) / 1000)
+            }
+        }))
+        Alpine.data('fileUpload', () => ({
+            files: [], dragover: false,
+            select() { this.$refs.fileInput.click() },
+            handleDrop(e) { this.dragover = false; this.handleFiles(e.dataTransfer.files) },
+            handleFiles(fileList) {
+                Array.from(fileList).forEach(file => {
+                    const f = { name: file.name, size: file.size, preview: null }
+                    if (file.type.startsWith('image/')) {
+                        const r = new FileReader(); r.onload = e => f.preview = e.target.result; r.readAsDataURL(file)
+                    }
+                    this.files.push(f)
+                })
+            },
+            remove(i) { this.files.splice(i, 1) },
+            formatSize(bytes) {
+                if (bytes < 1024) return bytes + ' B'
+                if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB'
+                return (bytes / 1048576).toFixed(1) + ' MB'
+            }
+        }))
+        Alpine.data('cookieConsent', () => ({
+            show: !localStorage.getItem('cookie_consent'),
+            accept() { localStorage.setItem('cookie_consent', 'accepted'); this.show = false },
+            decline() { localStorage.setItem('cookie_consent', 'declined'); this.show = false }
+        }))
         Alpine.data('chart', (config) => ({
             chart: null,
             type: config.type || 'line',
@@ -312,5 +390,6 @@
 </div>
 <x-toast />
 <x-command-palette />
+<x-cookie-consent />
 </body>
 </html>
