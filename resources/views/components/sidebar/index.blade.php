@@ -84,7 +84,11 @@
                 <x-heroicon-o-photo class="w-5 h-5 flex-shrink-0" />
                 <span x-show="!$store.sidebar.collapsed">Gallery</span>
             </a>
-            <a href="{{ url('/files') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('files') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+            <a href="{{ url('/inbox') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('inbox') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                <x-heroicon-o-envelope class="w-5 h-5 flex-shrink-0" />
+                <span x-show="!$store.sidebar.collapsed">Inbox</span>
+            </a>
+            <a href="{{ url('/file-manager') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('file-manager') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
                 <x-heroicon-o-folder class="w-5 h-5 flex-shrink-0" />
                 <span x-show="!$store.sidebar.collapsed">Files</span>
             </a>
