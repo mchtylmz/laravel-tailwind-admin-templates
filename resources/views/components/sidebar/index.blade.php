@@ -90,15 +90,23 @@
             </a>
             <a href="{{ url('/file-manager') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('file-manager') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
                 <x-heroicon-o-folder class="w-5 h-5 flex-shrink-0" />
+                <span x-show="!$store.sidebar.collapsed">File Manager</span>
+            </a>
+            <a href="{{ url('/files') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('files') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                <x-heroicon-o-document-duplicate class="w-5 h-5 flex-shrink-0" />
                 <span x-show="!$store.sidebar.collapsed">Files</span>
             </a>
             <a href="{{ url('/timeline') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('timeline') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
                 <x-heroicon-o-clock class="w-5 h-5 flex-shrink-0" />
                 <span x-show="!$store.sidebar.collapsed">Timeline</span>
             </a>
-            <a href="{{ url('/product') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('product') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+            <a href="{{ url('/products') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('products') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
                 <x-heroicon-o-shopping-bag class="w-5 h-5 flex-shrink-0" />
                 <span x-show="!$store.sidebar.collapsed">Products</span>
+            </a>
+            <a href="{{ url('/product') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('product') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                <x-heroicon-o-shopping-bag class="w-5 h-5 flex-shrink-0" />
+                <span x-show="!$store.sidebar.collapsed">Product Detail</span>
             </a>
             <a href="{{ url('/cart') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->is('cart') ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
                 <x-heroicon-o-shopping-cart class="w-5 h-5 flex-shrink-0" />
